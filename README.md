@@ -105,4 +105,22 @@ avg_total_reward = sum(total_rewards) / len(total_rewards)
 avg_final_reward = sum(final_rewards) / len(final_rewards)
   ```
 #### 1.PPO_clip
-Total_reward:  
+Total_rewards:  
+![](train_results/clip_total_reward.png)  
+Final_rewards:  
+![](train_results/clip_final_reward.png)  
+#### 2.PPO_KL
+Total_rewards:  
+![](train_results/KL_total_reward.png)  
+Final_rewards:  
+![](train_results/KL_final_reward.png)  
+#### 3.PPO_Trust_Region
+Total_rewards:  
+![](train_results/Trust_Region_total_reward.png)  
+Final_rewards:  
+![](train_results/Trust_Region_final_reward.png)
+### 四、实验总结
+1.理论是梯度上升，代码是通过损失函数进行梯度下降优化    
+2.关于update_timestep、EPISODE_PER_BATCH、NUM_BATCH等训练参数的选择没有清楚的概念    
+3.从实验结果上看PPO_clip效果最好，Total_reward能接近300分，PPO_KL和PPO_Trust_Region的Total_reward都到不了300分，有可能是KL相关参数的设定问题或者损失函数的定义问题  
+4.测试部分代码还在学习中，后续补充
