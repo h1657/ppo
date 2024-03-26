@@ -78,3 +78,31 @@ loss = -torch.min(surr1, surr2) + 0.5*self.MseLoss(state_values, rewards) - 0.01
       break
 loss = -torch.min(surr1, surr2) + 0.5*self.MseLoss(state_values, rewards) - 0.01*dist_entropy + kl
   ```
+#### 3.训练
+参数设置
+  ```python
+state_dim = 8   
+action_dim = 4  
+update_timestep = 1200  #当timestep达到1200执行update()
+lr = 0.002
+betas = (0.9, 0.999)  # Adam优化器参数
+gamma = 0.99
+K_epochs = 4               
+eps_clip = 0.2
+kl_min = 0.01
+kl_max = 0.1
+beta = 0.1
+EPISODE_PER_BATCH = 5  # 决定了每次策略更新前要玩多少次游戏（即收集多少回合的数据）
+NUM_BATCH = 200     # 定义了整个训练过程要重复多少次数据收集和策略更新的循环
+  ```
+### 三、实验结果
+实验结果分为avg_total_reward和avg_final_reward  
+avg_total_reward：一整局游戏下来的总得分  
+avg_final_reward：一局游戏最后一步的得分，100分意味着成功着陆  
+计算公式如下  
+  ```python
+avg_total_reward = sum(total_rewards) / len(total_rewards)
+avg_final_reward = sum(final_rewards) / len(final_rewards)
+  ```
+#### 1.PPO_clip
+Total_reward:  
